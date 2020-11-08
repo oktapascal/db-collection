@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Nov 2020 pada 08.45
--- Versi server: 10.4.13-MariaDB
--- Versi PHP: 7.2.32
+-- Waktu pembuatan: 08 Nov 2020 pada 13.41
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,12 +28,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bahan` (
-  `id_bahan` varchar(10) NOT NULL,
+  `id_bahan` varchar(20) NOT NULL,
   `nama_bahan` varchar(100) NOT NULL,
   `stok` float NOT NULL,
   `satuan` varchar(10) NOT NULL,
   `jenis` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `bahan`
+--
+
+INSERT INTO `bahan` (`id_bahan`, `nama_bahan`, `stok`, `satuan`, `jenis`) VALUES
+('BHN.202011.00001', 'Bahan 1', 0, 'pcs', 'Utama'),
+('BHN.202011.00002', 'Bahan 2', 0, 'pcs', 'Penolong'),
+('BHN.202011.00003', 'Bahan 3', 0, 'pcs', 'Utama');
 
 -- --------------------------------------------------------
 
@@ -58,6 +67,14 @@ CREATE TABLE `coa` (
   `nama_coa` varchar(100) NOT NULL,
   `header_coa` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `coa`
+--
+
+INSERT INTO `coa` (`no_coa`, `nama_coa`, `header_coa`) VALUES
+('11101', 'Kas', '111'),
+('11102', 'Beban', '111');
 
 -- --------------------------------------------------------
 
@@ -201,6 +218,7 @@ CREATE TABLE `saldo` (
 CREATE TABLE `transaksi` (
   `id_transaksi` varchar(10) NOT NULL,
   `periode` varchar(6) NOT NULL,
+  `keterangan` varchar(100) NOT NULL,
   `nominal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -218,6 +236,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`id_user`, `username`, `password`, `jabatan`) VALUES
+('USR.202011.0001', 'admin', '$2b$10$p9dYVihgVKQFetUWIh4x1.9AhQptJ45RvODI6XCzCQ6NAG2BsJOKe', 'Superadmin');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -226,6 +251,13 @@ CREATE TABLE `user` (
 --
 ALTER TABLE `bahan`
   ADD PRIMARY KEY (`id_bahan`);
+
+--
+-- Indeks untuk tabel `bom`
+--
+ALTER TABLE `bom`
+  ADD KEY `fk_id_bahan` (`id_bahan`),
+  ADD KEY `fk_id_kopi` (`id_kopi`);
 
 --
 -- Indeks untuk tabel `coa`
