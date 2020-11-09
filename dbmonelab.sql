@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Nov 2020 pada 13.41
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.4.11
+-- Waktu pembuatan: 09 Nov 2020 pada 08.41
+-- Versi server: 10.4.13-MariaDB
+-- Versi PHP: 7.2.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -115,6 +115,20 @@ CREATE TABLE `detail_pesanan` (
 
 CREATE TABLE `jurnal` (
   `id_transaksi` varchar(10) NOT NULL,
+  `no_coa` varchar(50) NOT NULL,
+  `posisi` varchar(1) NOT NULL,
+  `tanggal` date NOT NULL,
+  `nominal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jurnal_temp`
+--
+
+CREATE TABLE `jurnal_temp` (
+  `id_transaksi` varchar(20) NOT NULL,
   `no_coa` varchar(50) NOT NULL,
   `posisi` varchar(1) NOT NULL,
   `tanggal` date NOT NULL,
@@ -290,6 +304,13 @@ ALTER TABLE `jurnal`
   ADD KEY `fk_no_coa` (`no_coa`);
 
 --
+-- Indeks untuk tabel `jurnal_temp`
+--
+ALTER TABLE `jurnal_temp`
+  ADD KEY `fk_id_transaksi_jurnal_tem` (`id_transaksi`),
+  ADD KEY `fk_no_coa_jurnal_temp` (`no_coa`);
+
+--
 -- Indeks untuk tabel `kopi`
 --
 ALTER TABLE `kopi`
@@ -373,6 +394,13 @@ ALTER TABLE `detail_pesanan`
 ALTER TABLE `jurnal`
   ADD CONSTRAINT `fk_id_transaksi_jurnal` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_no_coa` FOREIGN KEY (`no_coa`) REFERENCES `coa` (`no_coa`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `jurnal_temp`
+--
+ALTER TABLE `jurnal_temp`
+  ADD CONSTRAINT `fk_id_transaksi_jurnal_tem` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_no_coa_jurnal_temp` FOREIGN KEY (`no_coa`) REFERENCES `coa` (`no_coa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `pembelian`
