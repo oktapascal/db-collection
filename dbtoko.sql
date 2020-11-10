@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Nov 2020 pada 08.21
+-- Waktu pembuatan: 10 Nov 2020 pada 08.55
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.2.32
 
@@ -653,7 +653,7 @@ INSERT INTO `kab_kot` (`id_kabkot`, `nama_kabkot`, `id_provinsi`) VALUES
 CREATE TABLE `kasir` (
   `id_kasir` varchar(20) NOT NULL,
   `nama_kasir` varchar(50) NOT NULL,
-  `status_kasir` int(6) NOT NULL,
+  `status_kasir` int(1) NOT NULL,
   `id_user` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -89055,7 +89055,8 @@ CREATE TABLE `saldo` (
 CREATE TABLE `stok_produk` (
   `id_stok` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
-  `jumlah` int(11) NOT NULL
+  `jumlah` int(11) NOT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
