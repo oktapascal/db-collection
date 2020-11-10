@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Nov 2020 pada 07.29
+-- Waktu pembuatan: 10 Nov 2020 pada 08.21
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.2.32
 
@@ -54,6 +54,34 @@ CREATE TABLE `coa` (
 INSERT INTO `coa` (`no_coa`, `nama_coa`, `header_coa`) VALUES
 ('11101', 'Kas', '111'),
 ('11102', 'Beban', '111');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `detail_pembelian`
+--
+
+CREATE TABLE `detail_pembelian` (
+  `id_pembelian` varchar(20) NOT NULL,
+  `id_produk` varchar(20) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `nominal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `detail_penjualan`
+--
+
+CREATE TABLE `detail_penjualan` (
+  `id_penjualan` varchar(20) NOT NULL,
+  `id_produk` varchar(20) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `nominal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -625,7 +653,7 @@ INSERT INTO `kab_kot` (`id_kabkot`, `nama_kabkot`, `id_provinsi`) VALUES
 CREATE TABLE `kasir` (
   `id_kasir` varchar(20) NOT NULL,
   `nama_kasir` varchar(50) NOT NULL,
-  `status_kasir` varchar(6) NOT NULL,
+  `status_kasir` int(6) NOT NULL,
   `id_user` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -88879,6 +88907,7 @@ CREATE TABLE `pelanggan` (
 
 CREATE TABLE `pembelian` (
   `id_pembelian` varchar(20) NOT NULL,
+  `id_supplier` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
   `periode` varchar(6) NOT NULL,
   `nominal` int(11) NOT NULL
@@ -88891,7 +88920,8 @@ CREATE TABLE `pembelian` (
 --
 
 CREATE TABLE `penjualan` (
-  `id_transaksi` varchar(20) NOT NULL,
+  `id_penjualan` varchar(20) NOT NULL,
+  `id_pelanggan` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
   `periode` varchar(6) NOT NULL,
   `nominal` int(11) NOT NULL
@@ -88986,7 +89016,8 @@ CREATE TABLE `retur_pembelian` (
   `id_retur_pembelian` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
   `nominal` int(11) NOT NULL,
-  `id_supplier` varchar(20) NOT NULL
+  `id_supplier` varchar(20) NOT NULL,
+  `id_pembelian` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -88999,7 +89030,8 @@ CREATE TABLE `retur_penjualan` (
   `id_retur_penjualan` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
   `nominal` int(11) NOT NULL,
-  `id_pelanggan` varchar(20) NOT NULL
+  `id_pelanggan` varchar(20) NOT NULL,
+  `id_penjualan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -89075,7 +89107,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `jabatan`) VALUES
-('USR.202011.0001', 'admin', '$2b$10$p9dYVihgVKQFetUWIh4x1.9AhQptJ45RvODI6XCzCQ6NAG2BsJOKe', 'Superadmin');
+('USR.202011.0001', 'admin', '$2b$10$p9dYVihgVKQFetUWIh4x1.9AhQptJ45RvODI6XCzCQ6NAG2BsJOKe', 'superadmin');
 
 --
 -- Indexes for dumped tables
@@ -89094,6 +89126,20 @@ ALTER TABLE `close_kasir`
 --
 ALTER TABLE `coa`
   ADD PRIMARY KEY (`no_coa`);
+
+--
+-- Indeks untuk tabel `detail_pembelian`
+--
+ALTER TABLE `detail_pembelian`
+  ADD KEY `fk_id_transaksi_detail_pembelian` (`id_pembelian`),
+  ADD KEY `fk_id_produk_detail_pembelian` (`id_produk`);
+
+--
+-- Indeks untuk tabel `detail_penjualan`
+--
+ALTER TABLE `detail_penjualan`
+  ADD KEY `fk_id_penjualan_detail_penjualan` (`id_penjualan`),
+  ADD KEY `fk_id_produk_detail_penjualan` (`id_produk`);
 
 --
 -- Indeks untuk tabel `detail_retur_pembelian`
@@ -89189,13 +89235,15 @@ ALTER TABLE `pelanggan`
 -- Indeks untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
-  ADD PRIMARY KEY (`id_pembelian`);
+  ADD PRIMARY KEY (`id_pembelian`),
+  ADD KEY `fk_id_supplier_pembelian` (`id_supplier`);
 
 --
 -- Indeks untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
-  ADD PRIMARY KEY (`id_transaksi`);
+  ADD PRIMARY KEY (`id_penjualan`),
+  ADD KEY `fk_id_pelanggan_penjualan` (`id_pelanggan`);
 
 --
 -- Indeks untuk tabel `pesanan`
@@ -89220,14 +89268,16 @@ ALTER TABLE `provinsi`
 --
 ALTER TABLE `retur_pembelian`
   ADD PRIMARY KEY (`id_retur_pembelian`),
-  ADD KEY `fk_id_supplier_retur_beli` (`id_supplier`);
+  ADD KEY `fk_id_supplier_retur_beli` (`id_supplier`),
+  ADD KEY `fk_id_pembelian_retur_beli` (`id_pembelian`);
 
 --
 -- Indeks untuk tabel `retur_penjualan`
 --
 ALTER TABLE `retur_penjualan`
   ADD PRIMARY KEY (`id_retur_penjualan`),
-  ADD KEY `fk_id_pelanggan_retur_jual` (`id_pelanggan`);
+  ADD KEY `fk_id_pelanggan_retur_jual` (`id_pelanggan`),
+  ADD KEY `fk_id_penjualan_retur_jual` (`id_penjualan`);
 
 --
 -- Indeks untuk tabel `saldo`
@@ -89275,6 +89325,20 @@ ALTER TABLE `close_kasir`
   ADD CONSTRAINT `fk_id_close` FOREIGN KEY (`id_close`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_kasir_close` FOREIGN KEY (`id_kasir`) REFERENCES `kasir` (`id_kasir`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_open_close` FOREIGN KEY (`id_open`) REFERENCES `open_kasir` (`id_open`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `detail_pembelian`
+--
+ALTER TABLE `detail_pembelian`
+  ADD CONSTRAINT `fk_id_produk_detail_pembelian` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_id_transaksi_detail_pembelian` FOREIGN KEY (`id_pembelian`) REFERENCES `pembelian` (`id_pembelian`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `detail_penjualan`
+--
+ALTER TABLE `detail_penjualan`
+  ADD CONSTRAINT `fk_id_penjualan_detail_penjualan` FOREIGN KEY (`id_penjualan`) REFERENCES `penjualan` (`id_penjualan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_id_produk_detail_penjualan` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `detail_retur_pembelian`
@@ -89358,18 +89422,21 @@ ALTER TABLE `pelanggan`
 -- Ketidakleluasaan untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
-  ADD CONSTRAINT `fk_id_pembelian` FOREIGN KEY (`id_pembelian`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_id_pembelian` FOREIGN KEY (`id_pembelian`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_id_supplier_pembelian` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
-  ADD CONSTRAINT `fk_id_transaksi_penjualan` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_id_pelanggan_penjualan` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_id_transaksi_penjualan` FOREIGN KEY (`id_penjualan`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `retur_pembelian`
 --
 ALTER TABLE `retur_pembelian`
+  ADD CONSTRAINT `fk_id_pembelian_retur_beli` FOREIGN KEY (`id_pembelian`) REFERENCES `pembelian` (`id_pembelian`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_supplier_retur_beli` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_transaksi_retur_beli` FOREIGN KEY (`id_retur_pembelian`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -89378,6 +89445,7 @@ ALTER TABLE `retur_pembelian`
 --
 ALTER TABLE `retur_penjualan`
   ADD CONSTRAINT `fk_id_pelanggan_retur_jual` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_id_penjualan_retur_jual` FOREIGN KEY (`id_penjualan`) REFERENCES `penjualan` (`id_penjualan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_transaksi_retur_jual` FOREIGN KEY (`id_retur_penjualan`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
