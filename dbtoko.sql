@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Nov 2020 pada 08.58
+-- Waktu pembuatan: 10 Nov 2020 pada 09.07
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.2.32
 
@@ -46,14 +46,6 @@ CREATE TABLE `coa` (
   `nama_coa` varchar(100) NOT NULL,
   `header_coa` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `coa`
---
-
-INSERT INTO `coa` (`no_coa`, `nama_coa`, `header_coa`) VALUES
-('11101', 'Kas', '111'),
-('11102', 'Beban', '111');
 
 -- --------------------------------------------------------
 
@@ -121,6 +113,17 @@ CREATE TABLE `detail_stok_produk` (
   `id_stok` varchar(20) NOT NULL,
   `id_produk` varchar(20) NOT NULL,
   `jumlah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `detail_supplier`
+--
+
+CREATE TABLE `detail_supplier` (
+  `id_supplier` varchar(20) NOT NULL,
+  `id_produk` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -88952,8 +88955,7 @@ CREATE TABLE `produk` (
   `stok_produk` int(11) NOT NULL,
   `harga_produk` int(11) NOT NULL,
   `diskon_produk` int(11) NOT NULL,
-  `satuan_produk` varchar(10) NOT NULL,
-  `id_supplier` varchar(20) NOT NULL
+  `satuan_produk` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -89165,6 +89167,13 @@ ALTER TABLE `detail_stok_produk`
   ADD KEY `fk_id_produk_detail` (`id_produk`);
 
 --
+-- Indeks untuk tabel `detail_supplier`
+--
+ALTER TABLE `detail_supplier`
+  ADD KEY `fk_id_supplier_detail_supplier` (`id_supplier`),
+  ADD KEY `fk_id_produk_detail_supplier` (`id_produk`);
+
+--
 -- Indeks untuk tabel `jurnal`
 --
 ALTER TABLE `jurnal`
@@ -89362,6 +89371,13 @@ ALTER TABLE `detail_retur_penjualan`
 ALTER TABLE `detail_stok_produk`
   ADD CONSTRAINT `fk_id_produk_detail` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_stok_detail` FOREIGN KEY (`id_stok`) REFERENCES `stok_produk` (`id_stok`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `detail_supplier`
+--
+ALTER TABLE `detail_supplier`
+  ADD CONSTRAINT `fk_id_produk_detail_supplier` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_id_supplier_detail_supplier` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `jurnal`
