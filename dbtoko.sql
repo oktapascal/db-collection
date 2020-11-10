@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Nov 2020 pada 05.40
+-- Waktu pembuatan: 10 Nov 2020 pada 07.29
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.2.32
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dbmonelab`
+-- Database: `dbtoko`
 --
 
 -- --------------------------------------------------------
@@ -625,7 +625,8 @@ INSERT INTO `kab_kot` (`id_kabkot`, `nama_kabkot`, `id_provinsi`) VALUES
 CREATE TABLE `kasir` (
   `id_kasir` varchar(20) NOT NULL,
   `nama_kasir` varchar(50) NOT NULL,
-  `status_kasir` varchar(6) NOT NULL
+  `status_kasir` varchar(6) NOT NULL,
+  `id_user` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -89140,7 +89141,8 @@ ALTER TABLE `kab_kot`
 -- Indeks untuk tabel `kasir`
 --
 ALTER TABLE `kasir`
-  ADD PRIMARY KEY (`id_kasir`);
+  ADD PRIMARY KEY (`id_kasir`),
+  ADD KEY `fk_id_user_kasir` (`id_user`);
 
 --
 -- Indeks untuk tabel `kecamatan`
@@ -89314,6 +89316,12 @@ ALTER TABLE `jurnal_temp`
 --
 ALTER TABLE `kab_kot`
   ADD CONSTRAINT `fk_id_kbkot` FOREIGN KEY (`id_provinsi`) REFERENCES `provinsi` (`id_provinsi`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `kasir`
+--
+ALTER TABLE `kasir`
+  ADD CONSTRAINT `fk_id_user_kasir` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `kecamatan`
