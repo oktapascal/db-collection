@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Nov 2020 pada 02.35
--- Versi server: 10.4.13-MariaDB
--- Versi PHP: 7.2.32
+-- Waktu pembuatan: 19 Nov 2020 pada 15.38
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -88955,7 +88955,8 @@ CREATE TABLE `produk` (
   `nama_produk` varchar(100) NOT NULL,
   `stok_produk` int(11) NOT NULL,
   `diskon_produk` int(11) NOT NULL,
-  `satuan_produk` varchar(10) NOT NULL
+  `satuan_produk` varchar(10) NOT NULL,
+  `foto` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -89073,6 +89074,7 @@ CREATE TABLE `supplier` (
   `nama_supplier` varchar(100) NOT NULL,
   `alamat_supplier` text NOT NULL,
   `telp_supplier` varchar(15) NOT NULL,
+  `foto` varchar(150) NOT NULL,
   `id_negara` varchar(5) NOT NULL,
   `id_provinsi` varchar(5) NOT NULL,
   `id_kabkot` varchar(5) NOT NULL,
