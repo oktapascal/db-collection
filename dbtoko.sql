@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Nov 2020 pada 15.38
+-- Waktu pembuatan: 20 Nov 2020 pada 14.25
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -46,6 +46,27 @@ CREATE TABLE `coa` (
   `nama_coa` varchar(100) NOT NULL,
   `header_coa` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `coa`
+--
+
+INSERT INTO `coa` (`no_coa`, `nama_coa`, `header_coa`) VALUES
+('11101110', 'Harta Lancar', '111'),
+('11101111', 'Kas', '111'),
+('11101112', 'Piutang Usaha', '111'),
+('11101113', 'Persediaan Barang Dagang', '111'),
+('21101210', 'Utang', '211'),
+('21101211', 'Utang Usaha', '211'),
+('30001310', 'Modal', '300'),
+('40001410', 'Pendapatan', '400'),
+('40001411', 'Penjualan', '400'),
+('40001412', 'Retur Penjualan', '400'),
+('40001413', 'Potongan Penjualan', '400'),
+('50001510', 'Beban-beban', '500'),
+('50001511', 'Pembelian', '500'),
+('50001512', 'Beban Angkut Pembelian', '500'),
+('50001513', 'Potongan Pembelian', '500');
 
 -- --------------------------------------------------------
 
