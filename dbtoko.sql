@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Nov 2020 pada 14.25
+-- Waktu pembuatan: 21 Nov 2020 pada 08.27
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -88974,7 +88974,6 @@ CREATE TABLE `pesanan` (
 CREATE TABLE `produk` (
   `id_produk` varchar(20) NOT NULL,
   `nama_produk` varchar(100) NOT NULL,
-  `stok_produk` int(11) NOT NULL,
   `diskon_produk` int(11) NOT NULL,
   `satuan_produk` varchar(10) NOT NULL,
   `foto` varchar(150) NOT NULL
