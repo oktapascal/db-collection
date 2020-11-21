@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Nov 2020 pada 14.56
+-- Waktu pembuatan: 21 Nov 2020 pada 16.05
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -692,6 +692,33 @@ CREATE TABLE `kategori_produk` (
   `id_kategori` varchar(20) NOT NULL,
   `nama_kategori` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kategori_produk`
+--
+
+INSERT INTO `kategori_produk` (`id_kategori`, `nama_kategori`) VALUES
+('KTG.202011.00001', 'Sarapan'),
+('KTG.202011.00002', 'Makanan Kaleng'),
+('KTG.202011.00003', 'Bahan Masakan'),
+('KTG.202011.00004', 'Cokelat dan Permen'),
+('KTG.202011.00005', 'Makanan Instan'),
+('KTG.202011.00006', 'Cemilan dan Biskuit'),
+('KTG.202011.00007', 'Makanan Sehat'),
+('KTG.202011.00008', 'Korean Food'),
+('KTG.202011.00009', 'Oriental Food'),
+('KTG.202011.00010', 'Western Food'),
+('KTG.202011.00011', 'Bahan Kue'),
+('KTG.202011.00012', 'Kental Manis'),
+('KTG.202011.00013', 'Susu'),
+('KTG.202011.00014', 'Minuman Ringan'),
+('KTG.202011.00015', 'Jus'),
+('KTG.202011.00016', 'Kopi'),
+('KTG.202011.00017', 'Teh'),
+('KTG.202011.00018', 'Air Mineral'),
+('KTG.202011.00019', 'Sirup'),
+('KTG.202011.00020', 'Coklat Bubuk dan Kremer'),
+('KTG.202011.00021', 'Minuman Tradisional');
 
 -- --------------------------------------------------------
 
@@ -88988,7 +89015,7 @@ CREATE TABLE `produk` (
   `diskon_produk` int(11) NOT NULL,
   `satuan_produk` varchar(10) NOT NULL,
   `foto` varchar(150) NOT NULL,
-  `id_kategori` varchar(20) NOT NULL
+  `id_subkategori` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -89093,6 +89120,18 @@ CREATE TABLE `stok_produk` (
   `tanggal` date NOT NULL,
   `jumlah` int(11) NOT NULL,
   `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `subkategori_produk`
+--
+
+CREATE TABLE `subkategori_produk` (
+  `id_subkategori` varchar(20) NOT NULL,
+  `nama_subkategori` varchar(100) NOT NULL,
+  `id_kategori` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -89307,7 +89346,7 @@ ALTER TABLE `pesanan`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`),
-  ADD KEY `fk_id_kategori_produk` (`id_kategori`);
+  ADD KEY `fk_id_subkategori_produk` (`id_subkategori`);
 
 --
 -- Indeks untuk tabel `provinsi`
@@ -89342,6 +89381,13 @@ ALTER TABLE `saldo`
 --
 ALTER TABLE `stok_produk`
   ADD PRIMARY KEY (`id_stok`);
+
+--
+-- Indeks untuk tabel `subkategori_produk`
+--
+ALTER TABLE `subkategori_produk`
+  ADD PRIMARY KEY (`id_subkategori`),
+  ADD KEY `fk_id_kategori_subkategori_produk` (`id_kategori`);
 
 --
 -- Indeks untuk tabel `supplier`
@@ -89495,7 +89541,7 @@ ALTER TABLE `penjualan`
 -- Ketidakleluasaan untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  ADD CONSTRAINT `fk_id_kategori_produk` FOREIGN KEY (`id_kategori`) REFERENCES `kategori_produk` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_id_subkategori_produk` FOREIGN KEY (`id_subkategori`) REFERENCES `subkategori_produk` (`id_subkategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `retur_pembelian`
@@ -89518,6 +89564,12 @@ ALTER TABLE `retur_penjualan`
 --
 ALTER TABLE `saldo`
   ADD CONSTRAINT `fk_id_transaksi` FOREIGN KEY (`id_saldo`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `subkategori_produk`
+--
+ALTER TABLE `subkategori_produk`
+  ADD CONSTRAINT `fk_id_kategori_subkategori_produk` FOREIGN KEY (`id_kategori`) REFERENCES `kategori_produk` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `supplier`
