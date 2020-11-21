@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Nov 2020 pada 08.27
+-- Waktu pembuatan: 21 Nov 2020 pada 14.56
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -680,6 +680,17 @@ CREATE TABLE `kasir` (
   `nama_kasir` varchar(50) NOT NULL,
   `status_kasir` int(1) NOT NULL,
   `id_user` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kategori_produk`
+--
+
+CREATE TABLE `kategori_produk` (
+  `id_kategori` varchar(20) NOT NULL,
+  `nama_kategori` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -88976,7 +88987,8 @@ CREATE TABLE `produk` (
   `nama_produk` varchar(100) NOT NULL,
   `diskon_produk` int(11) NOT NULL,
   `satuan_produk` varchar(10) NOT NULL,
-  `foto` varchar(150) NOT NULL
+  `foto` varchar(150) NOT NULL,
+  `id_kategori` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -89224,6 +89236,12 @@ ALTER TABLE `kasir`
   ADD KEY `fk_id_user_kasir` (`id_user`);
 
 --
+-- Indeks untuk tabel `kategori_produk`
+--
+ALTER TABLE `kategori_produk`
+  ADD PRIMARY KEY (`id_kategori`);
+
+--
 -- Indeks untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
@@ -89288,7 +89306,8 @@ ALTER TABLE `pesanan`
 -- Indeks untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  ADD PRIMARY KEY (`id_produk`);
+  ADD PRIMARY KEY (`id_produk`),
+  ADD KEY `fk_id_kategori_produk` (`id_kategori`);
 
 --
 -- Indeks untuk tabel `provinsi`
@@ -89471,6 +89490,12 @@ ALTER TABLE `pembelian`
 ALTER TABLE `penjualan`
   ADD CONSTRAINT `fk_id_pelanggan_penjualan` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_transaksi_penjualan` FOREIGN KEY (`id_penjualan`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `produk`
+--
+ALTER TABLE `produk`
+  ADD CONSTRAINT `fk_id_kategori_produk` FOREIGN KEY (`id_kategori`) REFERENCES `kategori_produk` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `retur_pembelian`
