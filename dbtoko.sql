@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Nov 2020 pada 16.05
+-- Waktu pembuatan: 22 Nov 2020 pada 15.51
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -89133,6 +89133,76 @@ CREATE TABLE `subkategori_produk` (
   `nama_subkategori` varchar(100) NOT NULL,
   `id_kategori` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `subkategori_produk`
+--
+
+INSERT INTO `subkategori_produk` (`id_subkategori`, `nama_subkategori`, `id_kategori`) VALUES
+('SKG.202011.00001', 'Sereal', 'KTG.202011.00001'),
+('SKG.202011.00002', 'Madu', 'KTG.202011.00001'),
+('SKG.202011.00003', 'Selai dan Olesan', 'KTG.202011.00001'),
+('SKG.202011.00004', 'Makanan Diet', 'KTG.202011.00001'),
+('SKG.202011.00005', 'Kornet', 'KTG.202011.00002'),
+('SKG.202011.00006', 'Ikan Kalengan', 'KTG.202011.00002'),
+('SKG.202011.00007', 'Makanan Pokok', 'KTG.202011.00003'),
+('SKG.202011.00008', 'Minyak dan Mentega', 'KTG.202011.00003'),
+('SKG.202011.00009', 'Bumbu Masak', 'KTG.202011.00003'),
+('SKG.202011.00010', 'Cokelat', 'KTG.202011.00004'),
+('SKG.202011.00011', 'Permen', 'KTG.202011.00004'),
+('SKG.202011.00012', 'Jelly', 'KTG.202011.00004'),
+('SKG.202011.00013', 'Mie Instan', 'KTG.202011.00005'),
+('SKG.202011.00014', 'Pasta dan Spaghetti', 'KTG.202011.00005'),
+('SKG.202011.00015', 'Sup Instan', 'KTG.202011.00005'),
+('SKG.202011.00016', 'Bubur dan Abon', 'KTG.202011.00005'),
+('SKG.202011.00017', 'Biskuit', 'KTG.202011.00006'),
+('SKG.202011.00018', 'Kacang-kacangan', 'KTG.202011.00006'),
+('SKG.202011.00019', 'Kue Kering', 'KTG.202011.00006'),
+('SKG.202011.00020', 'Cemilan Lokal', 'KTG.202011.00006'),
+('SKG.202011.00021', 'Wafer', 'KTG.202011.00006'),
+('SKG.202011.00022', 'Keripik', 'KTG.202011.00006'),
+('SKG.202011.00023', 'Rendah Kalori', 'KTG.202011.00007'),
+('SKG.202011.00024', 'Rendah Lemak', 'KTG.202011.00007'),
+('SKG.202011.00025', 'Rendah Garam', 'KTG.202011.00007'),
+('SKG.202011.00026', 'Free Gluten', 'KTG.202011.00007'),
+('SKG.202011.00027', 'Vegetarian', 'KTG.202011.00007'),
+('SKG.202011.00028', 'Produk Organik', 'KTG.202011.00007'),
+('SKG.202011.00029', 'Tinggi Serat', 'KTG.202011.00007'),
+('SKG.202011.00030', 'Tinggi Kalsium', 'KTG.202011.00007'),
+('SKG.202011.00031', 'Tinggi Protein', 'KTG.202011.00007'),
+('SKG.202011.00032', 'Tinggi Vitamin C', 'KTG.202011.00007'),
+('SKG.202011.00033', 'Spices dan Seasoning', 'KTG.202011.00008'),
+('SKG.202011.00034', 'Instant Food', 'KTG.202011.00008'),
+('SKG.202011.00035', 'Spices dan Seasoning', 'KTG.202011.00009'),
+('SKG.202011.00036', 'Instant Food', 'KTG.202011.00009'),
+('SKG.202011.00037', 'Cooking Oil dan Margarine', 'KTG.202011.00010'),
+('SKG.202011.00038', 'Keju dan Margarin', 'KTG.202011.00010'),
+('SKG.202011.00039', 'Makanan Kaleng', 'KTG.202011.00010'),
+('SKG.202011.00040', 'Gula dan Tepung', 'KTG.202011.00011'),
+('SKG.202011.00041', 'Mentega dan Margarin', 'KTG.202011.00011'),
+('SKG.202011.00042', 'Tepung Instan', 'KTG.202011.00011'),
+('SKG.202011.00043', 'Bahan Puding dan Agar-agar', 'KTG.202011.00011'),
+('SKG.202011.00044', 'Cokelat Masak dan Cokelat', 'KTG.202011.00011'),
+('SKG.202011.00045', 'Bubuk', 'KTG.202011.00011'),
+('SKG.202011.00046', 'Susu Cair dan Kental Manis', 'KTG.202011.00011'),
+('SKG.202011.00047', 'Keju', 'KTG.202011.00011'),
+('SKG.202011.00048', 'Olesan', 'KTG.202011.00011'),
+('SKG.202011.00049', 'Pengemulsi', 'KTG.202011.00011'),
+('SKG.202011.00050', 'Perisa', 'KTG.202011.00011'),
+('SKG.202011.00051', 'Topping dan Hiasan Kue', 'KTG.202011.00011'),
+('SKG.202011.00052', 'Kental Manis', 'KTG.202011.00012'),
+('SKG.202011.00053', 'Susu Cair', 'KTG.202011.00013'),
+('SKG.202011.00054', 'Susu Bubuk', 'KTG.202011.00013'),
+('SKG.202011.00055', 'Susu Evaporasi', 'KTG.202011.00013'),
+('SKG.202011.00056', 'Susu Kesehatan dan Diet', 'KTG.202011.00013'),
+('SKG.202011.00057', 'Susu Ibu Hamil dan Menyusui', 'KTG.202011.00013'),
+('SKG.202011.00058', 'Susu Specialty', 'KTG.202011.00013'),
+('SKG.202011.00059', 'Kopi Bubuk', 'KTG.202011.00016'),
+('SKG.202011.00060', 'Kopi Instan', 'KTG.202011.00016'),
+('SKG.202011.00061', 'Teh Instan', 'KTG.202011.00017'),
+('SKG.202011.00062', 'Teh Bubuk', 'KTG.202011.00017'),
+('SKG.202011.00063', 'Teh Celup', 'KTG.202011.00017'),
+('SKG.202011.00064', 'Air Mineral', 'KTG.202011.00018');
 
 -- --------------------------------------------------------
 
