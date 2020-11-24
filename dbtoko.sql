@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Nov 2020 pada 11.09
+-- Waktu pembuatan: 24 Nov 2020 pada 15.39
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -147,6 +147,14 @@ CREATE TABLE `detail_supplier` (
   `id_produk` varchar(20) NOT NULL,
   `harga_produk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `detail_supplier`
+--
+
+INSERT INTO `detail_supplier` (`id_supplier`, `id_produk`, `harga_produk`) VALUES
+('SPL.202011.00001', 'BRG.202011.00001', 8500),
+('SPL.202011.00001', 'BRG.202011.00002', 16000);
 
 -- --------------------------------------------------------
 
@@ -89031,7 +89039,8 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `diskon_produk`, `satuan_produ
 ('BRG.202011.00006', 'Al-Shifa Natural Honey 250g ', 0, 'toples', 'BRG.202011.00006.jpg', 'SKG.202011.00002'),
 ('BRG.202011.00007', 'Nusantara Madu Murni 250ml', 0, 'botol', 'BRG.202011.00007.jpg', 'SKG.202011.00002'),
 ('BRG.202011.00008', 'Tresno Joyo Madu Tj Murni 150g', 0, 'toples', 'BRG.202011.00008.jpg', 'SKG.202011.00002'),
-('BRG.202011.00009', 'Airmancur Madurasa Original 150g', 0, 'toples', 'BRG.202011.00009.jpg', 'SKG.202011.00002');
+('BRG.202011.00009', 'Airmancur Madurasa Original 150g', 0, 'toples', 'BRG.202011.00009.jpg', 'SKG.202011.00002'),
+('BRG.202011.00010', 'Test', 0, 'toples', 'BRG.202011.00010.jpg', 'SKG.202011.00002');
 
 -- --------------------------------------------------------
 
@@ -89237,6 +89246,13 @@ CREATE TABLE `supplier` (
   `id_kecamatan` varchar(5) NOT NULL,
   `id_kelurahan` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `supplier`
+--
+
+INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `alamat_supplier`, `telp_supplier`, `foto`, `id_negara`, `id_provinsi`, `id_kabkot`, `id_kecamatan`, `id_kelurahan`) VALUES
+('SPL.202011.00001', 'Nestle', 'Soekarno-Hatta St No.447 D', ' (022) 8524017', 'SPL.202011.00001.jpg', '64', '3', '13', '214', '1860');
 
 -- --------------------------------------------------------
 
