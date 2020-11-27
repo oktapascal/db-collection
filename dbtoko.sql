@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Nov 2020 pada 15.39
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.4.11
+-- Waktu pembuatan: 27 Nov 2020 pada 08.57
+-- Versi server: 10.4.13-MariaDB
+-- Versi PHP: 7.2.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -89277,15 +89277,16 @@ CREATE TABLE `user` (
   `id_user` varchar(20) NOT NULL,
   `username` varchar(10) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `jabatan` varchar(20) NOT NULL
+  `jabatan` varchar(20) NOT NULL,
+  `foto` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `username`, `password`, `jabatan`) VALUES
-('USR.202011.0001', 'admin', '$2b$10$p9dYVihgVKQFetUWIh4x1.9AhQptJ45RvODI6XCzCQ6NAG2BsJOKe', 'superadmin');
+INSERT INTO `user` (`id_user`, `username`, `password`, `jabatan`, `foto`) VALUES
+('USR.202011.0001', 'admin', '$2b$10$p9dYVihgVKQFetUWIh4x1.9AhQptJ45RvODI6XCzCQ6NAG2BsJOKe', 'superadmin', '');
 
 --
 -- Indexes for dumped tables
