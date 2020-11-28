@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Nov 2020 pada 15.01
+-- Waktu pembuatan: 28 Nov 2020 pada 16.15
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -89277,20 +89277,22 @@ CREATE TABLE `user` (
   `id_user` varchar(20) NOT NULL,
   `username` varchar(10) NOT NULL,
   `password` varchar(100) NOT NULL,
+  `nama` varchar(100) DEFAULT NULL,
+  `alamat` text DEFAULT NULL,
   `jabatan` varchar(20) NOT NULL,
-  `foto` varchar(150) NOT NULL
+  `foto` varchar(150) NOT NULL DEFAULT 'no-avatar.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `username`, `password`, `jabatan`, `foto`) VALUES
-('USR.202011.00001', 'superadmin', '$2y$10$cQTl8KTT2amctK0Kom6j.O1nf3K3yw4BDHpSAjTpPej3qT.tt1RRm', 'superadmin', ''),
-('USR.202011.00002', 'kasir1', '$2y$10$Exx64actVfgfrdfuvsumu.9x3EIgXFcpIfpcOmHwC9WSjC.wsZV5K', 'kasir', ''),
-('USR.202011.00003', 'kasir2', '$2y$10$taaKreHhzi/.A5XPHGwW9e4M.ZSqfcm2z0.M31g4MzhBpKSIFRJgW', 'kasir', ''),
-('USR.202011.00004', 'kasir3', '$2y$10$cebWS5Mj9SSCuvwYoird5.t/79MpgzWrIeOUJdiYXqojf8QbB14SG', 'kasir', ''),
-('USR.202011.00005', 'kasir4', '$2y$10$MvgR87X.l83MaEH7uU74K.lFzAbU16mExgZZI/ImimQMCUIvyzmSS', 'kasir', '');
+INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `alamat`, `jabatan`, `foto`) VALUES
+('USR.202011.00001', 'superadmin', '$2y$10$cQTl8KTT2amctK0Kom6j.O1nf3K3yw4BDHpSAjTpPej3qT.tt1RRm', 'Okta Pascal', 'Cimahi', 'superadmin', 'USR.202011.00001.png'),
+('USR.202011.00002', 'kasir1', '$2y$10$Exx64actVfgfrdfuvsumu.9x3EIgXFcpIfpcOmHwC9WSjC.wsZV5K', '', '', 'kasir', ''),
+('USR.202011.00003', 'kasir2', '$2y$10$taaKreHhzi/.A5XPHGwW9e4M.ZSqfcm2z0.M31g4MzhBpKSIFRJgW', '', '', 'kasir', ''),
+('USR.202011.00004', 'kasir3', '$2y$10$cebWS5Mj9SSCuvwYoird5.t/79MpgzWrIeOUJdiYXqojf8QbB14SG', '', '', 'kasir', ''),
+('USR.202011.00005', 'kasir4', '$2y$10$MvgR87X.l83MaEH7uU74K.lFzAbU16mExgZZI/ImimQMCUIvyzmSS', '', '', 'kasir', '');
 
 --
 -- Indexes for dumped tables
