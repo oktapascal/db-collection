@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Nov 2020 pada 16.15
+-- Waktu pembuatan: 29 Nov 2020 pada 02.53
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -88949,6 +88949,7 @@ INSERT INTO `negara` (`id_negara`, `nama_negara`) VALUES
 CREATE TABLE `open_kasir` (
   `id_open` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
+  `saldo` int(11) NOT NULL,
   `id_kasir` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
