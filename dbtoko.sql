@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Des 2020 pada 14.49
+-- Waktu pembuatan: 02 Des 2020 pada 16.07
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -145,7 +145,8 @@ CREATE TABLE `detail_retur_penjualan` (
 CREATE TABLE `detail_stok_produk` (
   `id_stok` varchar(20) NOT NULL,
   `id_produk` varchar(20) NOT NULL,
-  `jumlah` int(11) NOT NULL
+  `jumlah_satuan` int(11) NOT NULL,
+  `jumlah_detail` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -89033,7 +89034,7 @@ CREATE TABLE `produk` (
   `id_produk` varchar(20) NOT NULL,
   `nama_produk` varchar(100) NOT NULL,
   `diskon_produk` int(11) NOT NULL,
-  `satuan_produk` varchar(10) NOT NULL,
+  `satuan_penjualan` varchar(10) NOT NULL,
   `satuan_pembelian` varchar(10) NOT NULL,
   `foto` varchar(150) NOT NULL,
   `id_subkategori` varchar(20) NOT NULL
@@ -89043,7 +89044,7 @@ CREATE TABLE `produk` (
 -- Dumping data untuk tabel `produk`
 --
 
-INSERT INTO `produk` (`id_produk`, `nama_produk`, `diskon_produk`, `satuan_produk`, `satuan_pembelian`, `foto`, `id_subkategori`) VALUES
+INSERT INTO `produk` (`id_produk`, `nama_produk`, `diskon_produk`, `satuan_penjualan`, `satuan_pembelian`, `foto`, `id_subkategori`) VALUES
 ('BRG.202011.00001', 'Nestle Cereal Breakfast Koko Krunch 80g', 0, 'pcs', 'dus', 'BRG.202011.00001.jpg', 'SKG.202011.00001'),
 ('BRG.202011.00002', 'Simba Cereal Choco Chips Coklat 170g', 0, 'pcs', 'dus', 'BRG.202011.00002.jpg', 'SKG.202011.00001'),
 ('BRG.202011.00003', 'Quaker Instant Oatmeal Merah 1.2kg', 0, 'pcs', 'dus', 'BRG.202011.00003.jpg', 'SKG.202011.00001'),
@@ -89155,7 +89156,6 @@ CREATE TABLE `saldo` (
 CREATE TABLE `stok_produk` (
   `id_stok` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
-  `jumlah` int(11) NOT NULL,
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
