@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Des 2020 pada 16.07
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.4.11
+-- Waktu pembuatan: 03 Des 2020 pada 05.17
+-- Versi server: 10.4.13-MariaDB
+-- Versi PHP: 7.2.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -89277,7 +89277,8 @@ CREATE TABLE `transaksi` (
   `id_transaksi` varchar(20) NOT NULL,
   `periode` varchar(6) NOT NULL,
   `keterangan` varchar(100) NOT NULL,
-  `nominal` int(11) NOT NULL
+  `nominal` int(11) NOT NULL,
+  `status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -89323,7 +89324,8 @@ ALTER TABLE `close_kasir`
 -- Indeks untuk tabel `coa`
 --
 ALTER TABLE `coa`
-  ADD PRIMARY KEY (`no_coa`);
+  ADD PRIMARY KEY (`no_coa`),
+  ADD KEY `no_coa` (`no_coa`);
 
 --
 -- Indeks untuk tabel `detail_open_kasir`
@@ -89393,20 +89395,23 @@ ALTER TABLE `jurnal_temp`
 --
 ALTER TABLE `kab_kot`
   ADD PRIMARY KEY (`id_kabkot`),
-  ADD KEY `fk_id_kbkot` (`id_provinsi`);
+  ADD KEY `fk_id_kbkot` (`id_provinsi`),
+  ADD KEY `id_kabkot` (`id_kabkot`);
 
 --
 -- Indeks untuk tabel `kasir`
 --
 ALTER TABLE `kasir`
   ADD PRIMARY KEY (`id_kasir`),
-  ADD KEY `fk_id_user_kasir` (`id_user`);
+  ADD KEY `fk_id_user_kasir` (`id_user`),
+  ADD KEY `id_kasir` (`id_kasir`);
 
 --
 -- Indeks untuk tabel `kategori_produk`
 --
 ALTER TABLE `kategori_produk`
-  ADD PRIMARY KEY (`id_kategori`);
+  ADD PRIMARY KEY (`id_kategori`),
+  ADD KEY `id_kategori` (`id_kategori`);
 
 --
 -- Indeks untuk tabel `kecamatan`
@@ -89414,7 +89419,8 @@ ALTER TABLE `kategori_produk`
 ALTER TABLE `kecamatan`
   ADD PRIMARY KEY (`id_kecamatan`),
   ADD KEY `fk_id_kabkot_camat` (`id_kabkot`),
-  ADD KEY `fk_id_provinsi_camat` (`id_provinsi`);
+  ADD KEY `fk_id_provinsi_camat` (`id_provinsi`),
+  ADD KEY `id_kecamatan` (`id_kecamatan`);
 
 --
 -- Indeks untuk tabel `kelurahan`
@@ -89423,20 +89429,23 @@ ALTER TABLE `kelurahan`
   ADD PRIMARY KEY (`id_kelurahan`),
   ADD KEY `fk_id_kecamatan_lurah` (`id_kecamatan`),
   ADD KEY `fk_id_kabkot_lurah` (`id_kabkot`),
-  ADD KEY `fk_id_provinsi_lurah` (`id_provinsi`);
+  ADD KEY `fk_id_provinsi_lurah` (`id_provinsi`),
+  ADD KEY `id_kelurahan` (`id_kelurahan`);
 
 --
 -- Indeks untuk tabel `negara`
 --
 ALTER TABLE `negara`
-  ADD PRIMARY KEY (`id_negara`);
+  ADD PRIMARY KEY (`id_negara`),
+  ADD KEY `id_negara` (`id_negara`);
 
 --
 -- Indeks untuk tabel `open_kasir`
 --
 ALTER TABLE `open_kasir`
   ADD PRIMARY KEY (`id_open`),
-  ADD KEY `fk_id_kasir_open` (`id_kasir`);
+  ADD KEY `fk_id_kasir_open` (`id_kasir`),
+  ADD KEY `id_open` (`id_open`);
 
 --
 -- Indeks untuk tabel `pelanggan`
@@ -89447,40 +89456,46 @@ ALTER TABLE `pelanggan`
   ADD KEY `fk_id_provinsi_pelanggan` (`id_provinsi`),
   ADD KEY `fk_id_kabkot_pelanggan` (`id_kabkot`),
   ADD KEY `fk_id_kecamatan_pelanggan` (`id_kecamatan`),
-  ADD KEY `fk_id_kelurahan_pelanggan` (`id_kelurahan`);
+  ADD KEY `fk_id_kelurahan_pelanggan` (`id_kelurahan`),
+  ADD KEY `id_pelanggan` (`id_pelanggan`);
 
 --
 -- Indeks untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
   ADD PRIMARY KEY (`id_pembelian`),
-  ADD KEY `fk_id_supplier_pembelian` (`id_supplier`);
+  ADD KEY `fk_id_supplier_pembelian` (`id_supplier`),
+  ADD KEY `id_pembelian` (`id_pembelian`);
 
 --
 -- Indeks untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`id_penjualan`),
-  ADD KEY `fk_id_pelanggan_penjualan` (`id_pelanggan`);
+  ADD KEY `fk_id_pelanggan_penjualan` (`id_pelanggan`),
+  ADD KEY `id_penjualan` (`id_penjualan`);
 
 --
 -- Indeks untuk tabel `pesanan`
 --
 ALTER TABLE `pesanan`
-  ADD PRIMARY KEY (`id_pesanan`);
+  ADD PRIMARY KEY (`id_pesanan`),
+  ADD KEY `id_pesanan` (`id_pesanan`);
 
 --
 -- Indeks untuk tabel `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`),
-  ADD KEY `fk_id_subkategori_produk` (`id_subkategori`);
+  ADD KEY `fk_id_subkategori_produk` (`id_subkategori`),
+  ADD KEY `id_produk` (`id_produk`);
 
 --
 -- Indeks untuk tabel `provinsi`
 --
 ALTER TABLE `provinsi`
-  ADD PRIMARY KEY (`id_provinsi`);
+  ADD PRIMARY KEY (`id_provinsi`),
+  ADD KEY `id_provinsi` (`id_provinsi`);
 
 --
 -- Indeks untuk tabel `retur_pembelian`
@@ -89488,7 +89503,8 @@ ALTER TABLE `provinsi`
 ALTER TABLE `retur_pembelian`
   ADD PRIMARY KEY (`id_retur_pembelian`),
   ADD KEY `fk_id_supplier_retur_beli` (`id_supplier`),
-  ADD KEY `fk_id_pembelian_retur_beli` (`id_pembelian`);
+  ADD KEY `fk_id_pembelian_retur_beli` (`id_pembelian`),
+  ADD KEY `id_retur_pembelian` (`id_retur_pembelian`);
 
 --
 -- Indeks untuk tabel `retur_penjualan`
@@ -89496,26 +89512,30 @@ ALTER TABLE `retur_pembelian`
 ALTER TABLE `retur_penjualan`
   ADD PRIMARY KEY (`id_retur_penjualan`),
   ADD KEY `fk_id_pelanggan_retur_jual` (`id_pelanggan`),
-  ADD KEY `fk_id_penjualan_retur_jual` (`id_penjualan`);
+  ADD KEY `fk_id_penjualan_retur_jual` (`id_penjualan`),
+  ADD KEY `id_retur_penjualan` (`id_retur_penjualan`);
 
 --
 -- Indeks untuk tabel `saldo`
 --
 ALTER TABLE `saldo`
-  ADD PRIMARY KEY (`id_saldo`);
+  ADD PRIMARY KEY (`id_saldo`),
+  ADD KEY `id_saldo` (`id_saldo`);
 
 --
 -- Indeks untuk tabel `stok_produk`
 --
 ALTER TABLE `stok_produk`
-  ADD PRIMARY KEY (`id_stok`);
+  ADD PRIMARY KEY (`id_stok`),
+  ADD KEY `id_stok` (`id_stok`);
 
 --
 -- Indeks untuk tabel `subkategori_produk`
 --
 ALTER TABLE `subkategori_produk`
   ADD PRIMARY KEY (`id_subkategori`),
-  ADD KEY `fk_id_kategori_subkategori_produk` (`id_kategori`);
+  ADD KEY `fk_id_kategori_subkategori_produk` (`id_kategori`),
+  ADD KEY `id_subkategori` (`id_subkategori`);
 
 --
 -- Indeks untuk tabel `supplier`
@@ -89526,13 +89546,15 @@ ALTER TABLE `supplier`
   ADD KEY `fk_id_provinsi_supplier` (`id_provinsi`),
   ADD KEY `fk_id_kabkot` (`id_kabkot`),
   ADD KEY `fk_id_kecamatan_supplier` (`id_kecamatan`),
-  ADD KEY `fk_id_kelurahan_supplier` (`id_kelurahan`);
+  ADD KEY `fk_id_kelurahan_supplier` (`id_kelurahan`),
+  ADD KEY `id_supplier` (`id_supplier`);
 
 --
 -- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id_transaksi`);
+  ADD PRIMARY KEY (`id_transaksi`),
+  ADD KEY `id_transaksi` (`id_transaksi`);
 
 --
 -- Indeks untuk tabel `user`
