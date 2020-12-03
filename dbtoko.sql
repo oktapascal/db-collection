@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Des 2020 pada 05.46
+-- Waktu pembuatan: 03 Des 2020 pada 09.54
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.2.32
 
@@ -89050,11 +89050,11 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `diskon_produk`, `satuan_penju
 ('BRG.202011.00003', 'Quaker Instant Oatmeal Merah 1.2kg', 0, 'pcs', 'dus', 'BRG.202011.00003.jpg', 'SKG.202011.00001'),
 ('BRG.202011.00004', 'Energen Cereal & Susu Instant Cokelat 10x29g', 0, 'pcs', 'dus', 'BRG.202011.00004.jpg', 'SKG.202011.00001'),
 ('BRG.202011.00005', 'Energen Cereal & Susu Instant Vanilla 10x29g', 0, 'pcs', 'dus', 'BRG.202011.00005.jpg', 'SKG.202011.00001'),
-('BRG.202011.00006', 'Al-Shifa Natural Honey 250g ', 0, 'toples', 'dus', 'BRG.202011.00006.jpg', 'SKG.202011.00002'),
-('BRG.202011.00007', 'Nusantara Madu Murni 250ml', 0, 'botol', 'dus', 'BRG.202011.00007.jpg', 'SKG.202011.00002'),
-('BRG.202011.00008', 'Tresno Joyo Madu Tj Murni 150g', 0, 'toples', 'dus', 'BRG.202011.00008.jpg', 'SKG.202011.00002'),
-('BRG.202011.00009', 'Airmancur Madurasa Original 150g', 0, 'toples', 'dus', 'BRG.202011.00009.jpg', 'SKG.202011.00002'),
-('BRG.202011.00010', 'Test', 0, 'toples', 'dus', 'BRG.202011.00010.jpg', 'SKG.202011.00002');
+('BRG.202011.00006', 'Al-Shifa Natural Honey 250g ', 0, 'pcs', 'dus', 'BRG.202011.00006.jpg', 'SKG.202011.00002'),
+('BRG.202011.00007', 'Nusantara Madu Murni 250ml', 0, 'pcs', 'dus', 'BRG.202011.00007.jpg', 'SKG.202011.00002'),
+('BRG.202011.00008', 'Tresno Joyo Madu Tj Murni 150g', 0, 'pcs', 'dus', 'BRG.202011.00008.jpg', 'SKG.202011.00002'),
+('BRG.202011.00009', 'Airmancur Madurasa Original 150g', 0, 'pcs', 'dus', 'BRG.202011.00009.jpg', 'SKG.202011.00002'),
+('BRG.202011.00010', 'Test', 0, 'pcs', 'dus', 'BRG.202011.00010.jpg', 'SKG.202011.00002');
 
 -- --------------------------------------------------------
 
