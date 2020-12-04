@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Des 2020 pada 09.54
--- Versi server: 10.4.13-MariaDB
--- Versi PHP: 7.2.32
+-- Waktu pembuatan: 04 Des 2020 pada 15.00
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -196,6 +196,14 @@ CREATE TABLE `jurnal_temp` (
   `tanggal` date NOT NULL,
   `nominal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `jurnal_temp`
+--
+
+INSERT INTO `jurnal_temp` (`id_transaksi`, `no_coa`, `posisi`, `tanggal`, `nominal`) VALUES
+('SLD.202012.00001', '11101111', 'D', '2020-12-04', 20000000),
+('SLD.202012.00001', '30001310', 'K', '2020-12-04', 20000000);
 
 -- --------------------------------------------------------
 
@@ -89147,6 +89155,13 @@ CREATE TABLE `saldo` (
   `nominal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `saldo`
+--
+
+INSERT INTO `saldo` (`id_saldo`, `tanggal`, `nominal`) VALUES
+('SLD.202012.00001', '2020-12-01', 20000000);
+
 -- --------------------------------------------------------
 
 --
@@ -89281,6 +89296,13 @@ CREATE TABLE `transaksi` (
   `status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `periode`, `keterangan`, `nominal`, `status`) VALUES
+('SLD.202012.00001', '202012', 'Test saldo update', 20000000, '0');
+
 -- --------------------------------------------------------
 
 --
@@ -89302,11 +89324,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `alamat`, `jabatan`, `foto`) VALUES
-('USR.202011.00001', 'superadmin', '$2y$10$cQTl8KTT2amctK0Kom6j.O1nf3K3yw4BDHpSAjTpPej3qT.tt1RRm', 'Okta Pascal', 'Cimahi', 'superadmin', 'USR.202011.00001.png'),
+('USR.202011.00001', 'superadmin', '$2y$10$cQTl8KTT2amctK0Kom6j.O1nf3K3yw4BDHpSAjTpPej3qT.tt1RRm', 'Okta Pascal Ibrahim', 'Bandung', 'superadmin', 'USR.202011.00001.png'),
 ('USR.202011.00002', 'kasir1', '$2y$10$Exx64actVfgfrdfuvsumu.9x3EIgXFcpIfpcOmHwC9WSjC.wsZV5K', '', '', 'kasir', ''),
 ('USR.202011.00003', 'kasir2', '$2y$10$taaKreHhzi/.A5XPHGwW9e4M.ZSqfcm2z0.M31g4MzhBpKSIFRJgW', '', '', 'kasir', ''),
 ('USR.202011.00004', 'kasir3', '$2y$10$cebWS5Mj9SSCuvwYoird5.t/79MpgzWrIeOUJdiYXqojf8QbB14SG', '', '', 'kasir', ''),
-('USR.202011.00005', 'kasir4', '$2y$10$MvgR87X.l83MaEH7uU74K.lFzAbU16mExgZZI/ImimQMCUIvyzmSS', '', '', 'kasir', '');
+('USR.202011.00005', 'kasir4', '$2y$10$MvgR87X.l83MaEH7uU74K.lFzAbU16mExgZZI/ImimQMCUIvyzmSS', '', '', 'kasir', ''),
+('USR.202012.00006', 'kasir5', '$2y$10$Dq0fhgtnZNCltOhs0M.5m.LQ78AXdUfRmFr3u7GA6Yv5GfUBL0KEe', NULL, NULL, 'kasir', 'no-avatar.png');
 
 --
 -- Indexes for dumped tables
