@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Des 2020 pada 15.00
+-- Waktu pembuatan: 05 Des 2020 pada 14.51
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -67,18 +67,6 @@ INSERT INTO `coa` (`no_coa`, `nama_coa`, `header_coa`) VALUES
 ('50001511', 'Pembelian', '500'),
 ('50001512', 'Beban Angkut Pembelian', '500'),
 ('50001513', 'Potongan Pembelian', '500');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `detail_open_kasir`
---
-
-CREATE TABLE `detail_open_kasir` (
-  `id_open` varchar(20) NOT NULL,
-  `id_saldo` varchar(20) NOT NULL,
-  `nominal` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -89351,13 +89339,6 @@ ALTER TABLE `coa`
   ADD KEY `no_coa` (`no_coa`);
 
 --
--- Indeks untuk tabel `detail_open_kasir`
---
-ALTER TABLE `detail_open_kasir`
-  ADD KEY `fk_id_open_detail_open_kasir` (`id_open`),
-  ADD KEY `fk_id_saldo_detail_open_kasir` (`id_saldo`);
-
---
 -- Indeks untuk tabel `detail_pembelian`
 --
 ALTER TABLE `detail_pembelian`
@@ -89596,13 +89577,6 @@ ALTER TABLE `close_kasir`
   ADD CONSTRAINT `fk_id_close` FOREIGN KEY (`id_close`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_kasir_close` FOREIGN KEY (`id_kasir`) REFERENCES `kasir` (`id_kasir`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_open_close` FOREIGN KEY (`id_open`) REFERENCES `open_kasir` (`id_open`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `detail_open_kasir`
---
-ALTER TABLE `detail_open_kasir`
-  ADD CONSTRAINT `fk_id_open_detail_open_kasir` FOREIGN KEY (`id_open`) REFERENCES `open_kasir` (`id_open`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_id_saldo_detail_open_kasir` FOREIGN KEY (`id_saldo`) REFERENCES `saldo` (`id_saldo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `detail_pembelian`
