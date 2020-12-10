@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Des 2020 pada 15.08
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.4.11
+-- Waktu pembuatan: 10 Des 2020 pada 04.20
+-- Versi server: 10.4.13-MariaDB
+-- Versi PHP: 7.2.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -71,6 +71,19 @@ INSERT INTO `coa` (`no_coa`, `nama_coa`, `header_coa`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `detail_diskon_produk`
+--
+
+CREATE TABLE `detail_diskon_produk` (
+  `id_diskon` varchar(20) NOT NULL,
+  `id_produk` varchar(20) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `nominal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `detail_pembelian`
 --
 
@@ -79,7 +92,8 @@ CREATE TABLE `detail_pembelian` (
   `id_produk` varchar(20) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
-  `nominal` int(11) NOT NULL
+  `nominal` int(11) NOT NULL,
+  `potongan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -156,6 +170,19 @@ CREATE TABLE `detail_supplier` (
 INSERT INTO `detail_supplier` (`id_supplier`, `id_produk`, `harga_produk`) VALUES
 ('SPL.202011.00001', 'BRG.202011.00001', 8500),
 ('SPL.202011.00001', 'BRG.202011.00002', 16000);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `diskon_produk`
+--
+
+CREATE TABLE `diskon_produk` (
+  `id_diskon` varchar(20) NOT NULL,
+  `tanggal_mulai` date NOT NULL,
+  `tanggal_akhir` date NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -88989,7 +89016,8 @@ CREATE TABLE `pembelian` (
   `id_supplier` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
   `periode` varchar(6) NOT NULL,
-  `nominal` int(11) NOT NULL
+  `nominal` int(11) NOT NULL,
+  `potongan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -89028,7 +89056,6 @@ CREATE TABLE `pesanan` (
 CREATE TABLE `produk` (
   `id_produk` varchar(20) NOT NULL,
   `nama_produk` varchar(100) NOT NULL,
-  `diskon_produk` int(11) NOT NULL,
   `satuan_penjualan` varchar(10) NOT NULL,
   `satuan_pembelian` varchar(10) NOT NULL,
   `foto` varchar(150) NOT NULL,
@@ -89039,17 +89066,17 @@ CREATE TABLE `produk` (
 -- Dumping data untuk tabel `produk`
 --
 
-INSERT INTO `produk` (`id_produk`, `nama_produk`, `diskon_produk`, `satuan_penjualan`, `satuan_pembelian`, `foto`, `id_subkategori`) VALUES
-('BRG.202011.00001', 'Nestle Cereal Breakfast Koko Krunch 80g', 0, 'pcs', 'dus', 'BRG.202011.00001.jpg', 'SKG.202011.00001'),
-('BRG.202011.00002', 'Simba Cereal Choco Chips Coklat 170g', 0, 'pcs', 'dus', 'BRG.202011.00002.jpg', 'SKG.202011.00001'),
-('BRG.202011.00003', 'Quaker Instant Oatmeal Merah 1.2kg', 0, 'pcs', 'dus', 'BRG.202011.00003.jpg', 'SKG.202011.00001'),
-('BRG.202011.00004', 'Energen Cereal & Susu Instant Cokelat 10x29g', 0, 'pcs', 'dus', 'BRG.202011.00004.jpg', 'SKG.202011.00001'),
-('BRG.202011.00005', 'Energen Cereal & Susu Instant Vanilla 10x29g', 0, 'pcs', 'dus', 'BRG.202011.00005.jpg', 'SKG.202011.00001'),
-('BRG.202011.00006', 'Al-Shifa Natural Honey 250g ', 0, 'pcs', 'dus', 'BRG.202011.00006.jpg', 'SKG.202011.00002'),
-('BRG.202011.00007', 'Nusantara Madu Murni 250ml', 0, 'pcs', 'dus', 'BRG.202011.00007.jpg', 'SKG.202011.00002'),
-('BRG.202011.00008', 'Tresno Joyo Madu Tj Murni 150g', 0, 'pcs', 'dus', 'BRG.202011.00008.jpg', 'SKG.202011.00002'),
-('BRG.202011.00009', 'Airmancur Madurasa Original 150g', 0, 'pcs', 'dus', 'BRG.202011.00009.jpg', 'SKG.202011.00002'),
-('BRG.202011.00010', 'Test', 0, 'pcs', 'dus', 'BRG.202011.00010.jpg', 'SKG.202011.00002');
+INSERT INTO `produk` (`id_produk`, `nama_produk`, `satuan_penjualan`, `satuan_pembelian`, `foto`, `id_subkategori`) VALUES
+('BRG.202011.00001', 'Nestle Cereal Breakfast Koko Krunch 80g', 'pcs', 'dus', 'BRG.202011.00001.jpg', 'SKG.202011.00001'),
+('BRG.202011.00002', 'Simba Cereal Choco Chips Coklat 170g', 'pcs', 'dus', 'BRG.202011.00002.jpg', 'SKG.202011.00001'),
+('BRG.202011.00003', 'Quaker Instant Oatmeal Merah 1.2kg', 'pcs', 'dus', 'BRG.202011.00003.jpg', 'SKG.202011.00001'),
+('BRG.202011.00004', 'Energen Cereal & Susu Instant Cokelat 10x29g', 'pcs', 'dus', 'BRG.202011.00004.jpg', 'SKG.202011.00001'),
+('BRG.202011.00005', 'Energen Cereal & Susu Instant Vanilla 10x29g', 'pcs', 'dus', 'BRG.202011.00005.jpg', 'SKG.202011.00001'),
+('BRG.202011.00006', 'Al-Shifa Natural Honey 250g ', 'pcs', 'dus', 'BRG.202011.00006.jpg', 'SKG.202011.00002'),
+('BRG.202011.00007', 'Nusantara Madu Murni 250ml', 'pcs', 'dus', 'BRG.202011.00007.jpg', 'SKG.202011.00002'),
+('BRG.202011.00008', 'Tresno Joyo Madu Tj Murni 150g', 'pcs', 'dus', 'BRG.202011.00008.jpg', 'SKG.202011.00002'),
+('BRG.202011.00009', 'Airmancur Madurasa Original 150g', 'pcs', 'dus', 'BRG.202011.00009.jpg', 'SKG.202011.00002'),
+('BRG.202011.00010', 'Test', 'pcs', 'dus', 'BRG.202011.00010.jpg', 'SKG.202011.00002');
 
 -- --------------------------------------------------------
 
@@ -89338,6 +89365,13 @@ ALTER TABLE `coa`
   ADD KEY `no_coa` (`no_coa`);
 
 --
+-- Indeks untuk tabel `detail_diskon_produk`
+--
+ALTER TABLE `detail_diskon_produk`
+  ADD KEY `fk_id_diskon_detail_diskon_produk` (`id_diskon`),
+  ADD KEY `fk_id_produk_detail_diskon_produk` (`id_produk`);
+
+--
 -- Indeks untuk tabel `detail_pembelian`
 --
 ALTER TABLE `detail_pembelian`
@@ -89378,6 +89412,13 @@ ALTER TABLE `detail_stok_produk`
 ALTER TABLE `detail_supplier`
   ADD KEY `fk_id_supplier_detail_supplier` (`id_supplier`),
   ADD KEY `fk_id_produk_detail_supplier` (`id_produk`);
+
+--
+-- Indeks untuk tabel `diskon_produk`
+--
+ALTER TABLE `diskon_produk`
+  ADD PRIMARY KEY (`id_diskon`),
+  ADD KEY `id_diskon` (`id_diskon`);
 
 --
 -- Indeks untuk tabel `jurnal`
@@ -89576,6 +89617,13 @@ ALTER TABLE `close_kasir`
   ADD CONSTRAINT `fk_id_close` FOREIGN KEY (`id_close`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_kasir_close` FOREIGN KEY (`id_kasir`) REFERENCES `kasir` (`id_kasir`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_open_close` FOREIGN KEY (`id_open`) REFERENCES `open_kasir` (`id_open`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `detail_diskon_produk`
+--
+ALTER TABLE `detail_diskon_produk`
+  ADD CONSTRAINT `fk_id_diskon_detail_diskon_produk` FOREIGN KEY (`id_diskon`) REFERENCES `diskon_produk` (`id_diskon`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_id_produk_detail_diskon_produk` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `detail_pembelian`

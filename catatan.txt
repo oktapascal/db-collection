@@ -1,0 +1,25 @@
+tabel-tabel dan alur yang dibutuhkan untuk transaksi pembelian
+Tabel :
+1. transaksi
+2. pembelian
+3. stok_produk
+4. detail_pembelian
+5. detail_stok_produk
+6. jurnal_temp
+
+Alur :
+1. Pilih supplier yang dibeli produknya
+2. Pilih apakah ada ongkir pembelian atau tidak (1=ada atau tidak)
+	- Jika ada ongkir pembelian maka ada akun beban angkut pembelian di penjurnalan
+3. Nominal potongan pembelian (jika tidak ada default 0)
+	- Jika ada potongan pembelian maka ada akun potongan pembelian di penjurnalan
+4. Ada field total pembelian (tidak termasuk potongan)
+5. Ada field potongan pembelian (default 0)
+6. Ada field ongkir pembelian (default 0)
+7. Data produk yang dibeli :
+	- id_produk
+	- jumlah_satuan (ex: dus) (untuk tabel detail_stok_produk dan detail_pembelian)
+	- jumlah_detail (ex: pcs) (untuk tabel detail_stok_produk)
+	- harga produk satuannya
+	- subtotal
+	- potongan (default 0)
