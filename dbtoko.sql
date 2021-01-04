@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Des 2020 pada 04.20
+-- Waktu pembuatan: 04 Jan 2021 pada 03.49
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.2.32
 
@@ -89056,6 +89056,7 @@ CREATE TABLE `pesanan` (
 CREATE TABLE `produk` (
   `id_produk` varchar(20) NOT NULL,
   `nama_produk` varchar(100) NOT NULL,
+  `harga_jual` int(11) NOT NULL,
   `satuan_penjualan` varchar(10) NOT NULL,
   `satuan_pembelian` varchar(10) NOT NULL,
   `foto` varchar(150) NOT NULL,
@@ -89066,17 +89067,17 @@ CREATE TABLE `produk` (
 -- Dumping data untuk tabel `produk`
 --
 
-INSERT INTO `produk` (`id_produk`, `nama_produk`, `satuan_penjualan`, `satuan_pembelian`, `foto`, `id_subkategori`) VALUES
-('BRG.202011.00001', 'Nestle Cereal Breakfast Koko Krunch 80g', 'pcs', 'dus', 'BRG.202011.00001.jpg', 'SKG.202011.00001'),
-('BRG.202011.00002', 'Simba Cereal Choco Chips Coklat 170g', 'pcs', 'dus', 'BRG.202011.00002.jpg', 'SKG.202011.00001'),
-('BRG.202011.00003', 'Quaker Instant Oatmeal Merah 1.2kg', 'pcs', 'dus', 'BRG.202011.00003.jpg', 'SKG.202011.00001'),
-('BRG.202011.00004', 'Energen Cereal & Susu Instant Cokelat 10x29g', 'pcs', 'dus', 'BRG.202011.00004.jpg', 'SKG.202011.00001'),
-('BRG.202011.00005', 'Energen Cereal & Susu Instant Vanilla 10x29g', 'pcs', 'dus', 'BRG.202011.00005.jpg', 'SKG.202011.00001'),
-('BRG.202011.00006', 'Al-Shifa Natural Honey 250g ', 'pcs', 'dus', 'BRG.202011.00006.jpg', 'SKG.202011.00002'),
-('BRG.202011.00007', 'Nusantara Madu Murni 250ml', 'pcs', 'dus', 'BRG.202011.00007.jpg', 'SKG.202011.00002'),
-('BRG.202011.00008', 'Tresno Joyo Madu Tj Murni 150g', 'pcs', 'dus', 'BRG.202011.00008.jpg', 'SKG.202011.00002'),
-('BRG.202011.00009', 'Airmancur Madurasa Original 150g', 'pcs', 'dus', 'BRG.202011.00009.jpg', 'SKG.202011.00002'),
-('BRG.202011.00010', 'Test', 'pcs', 'dus', 'BRG.202011.00010.jpg', 'SKG.202011.00002');
+INSERT INTO `produk` (`id_produk`, `nama_produk`, `harga_jual`, `satuan_penjualan`, `satuan_pembelian`, `foto`, `id_subkategori`) VALUES
+('BRG.202011.00001', 'Nestle Cereal Breakfast Koko Krunch 80g', 0, 'pcs', 'dus', 'BRG.202011.00001.jpg', 'SKG.202011.00001'),
+('BRG.202011.00002', 'Simba Cereal Choco Chips Coklat 170g', 0, 'pcs', 'dus', 'BRG.202011.00002.jpg', 'SKG.202011.00001'),
+('BRG.202011.00003', 'Quaker Instant Oatmeal Merah 1.2kg', 0, 'pcs', 'dus', 'BRG.202011.00003.jpg', 'SKG.202011.00001'),
+('BRG.202011.00004', 'Energen Cereal & Susu Instant Cokelat 10x29g', 0, 'pcs', 'dus', 'BRG.202011.00004.jpg', 'SKG.202011.00001'),
+('BRG.202011.00005', 'Energen Cereal & Susu Instant Vanilla 10x29g', 0, 'pcs', 'dus', 'BRG.202011.00005.jpg', 'SKG.202011.00001'),
+('BRG.202011.00006', 'Al-Shifa Natural Honey 250g ', 0, 'pcs', 'dus', 'BRG.202011.00006.jpg', 'SKG.202011.00002'),
+('BRG.202011.00007', 'Nusantara Madu Murni 250ml', 0, 'pcs', 'dus', 'BRG.202011.00007.jpg', 'SKG.202011.00002'),
+('BRG.202011.00008', 'Tresno Joyo Madu Tj Murni 150g', 0, 'pcs', 'dus', 'BRG.202011.00008.jpg', 'SKG.202011.00002'),
+('BRG.202011.00009', 'Airmancur Madurasa Original 150g', 0, 'pcs', 'dus', 'BRG.202011.00009.jpg', 'SKG.202011.00002'),
+('BRG.202011.00010', 'Test', 0, 'pcs', 'dus', 'BRG.202011.00010.jpg', 'SKG.202011.00002');
 
 -- --------------------------------------------------------
 
