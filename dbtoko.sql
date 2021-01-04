@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Jan 2021 pada 03.49
--- Versi server: 10.4.13-MariaDB
--- Versi PHP: 7.2.32
+-- Generation Time: Jan 04, 2021 at 01:19 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `close_kasir`
+-- Table structure for table `close_kasir`
 --
 
 CREATE TABLE `close_kasir` (
@@ -38,7 +38,7 @@ CREATE TABLE `close_kasir` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `coa`
+-- Table structure for table `coa`
 --
 
 CREATE TABLE `coa` (
@@ -48,7 +48,7 @@ CREATE TABLE `coa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `coa`
+-- Dumping data for table `coa`
 --
 
 INSERT INTO `coa` (`no_coa`, `nama_coa`, `header_coa`) VALUES
@@ -71,7 +71,7 @@ INSERT INTO `coa` (`no_coa`, `nama_coa`, `header_coa`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_diskon_produk`
+-- Table structure for table `detail_diskon_produk`
 --
 
 CREATE TABLE `detail_diskon_produk` (
@@ -84,7 +84,7 @@ CREATE TABLE `detail_diskon_produk` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_pembelian`
+-- Table structure for table `detail_pembelian`
 --
 
 CREATE TABLE `detail_pembelian` (
@@ -99,7 +99,7 @@ CREATE TABLE `detail_pembelian` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_penjualan`
+-- Table structure for table `detail_penjualan`
 --
 
 CREATE TABLE `detail_penjualan` (
@@ -113,7 +113,7 @@ CREATE TABLE `detail_penjualan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_retur_pembelian`
+-- Table structure for table `detail_retur_pembelian`
 --
 
 CREATE TABLE `detail_retur_pembelian` (
@@ -127,7 +127,7 @@ CREATE TABLE `detail_retur_pembelian` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_retur_penjualan`
+-- Table structure for table `detail_retur_penjualan`
 --
 
 CREATE TABLE `detail_retur_penjualan` (
@@ -141,7 +141,7 @@ CREATE TABLE `detail_retur_penjualan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_stok_produk`
+-- Table structure for table `detail_stok_produk`
 --
 
 CREATE TABLE `detail_stok_produk` (
@@ -151,10 +151,18 @@ CREATE TABLE `detail_stok_produk` (
   `jumlah_detail` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `detail_stok_produk`
+--
+
+INSERT INTO `detail_stok_produk` (`id_stok`, `id_produk`, `jumlah_satuan`, `jumlah_detail`) VALUES
+('STK.202012.00001', 'BRG.202011.00001', 1, 12),
+('STK.202012.00001', 'BRG.202011.00002', 1, 10);
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_supplier`
+-- Table structure for table `detail_supplier`
 --
 
 CREATE TABLE `detail_supplier` (
@@ -164,7 +172,7 @@ CREATE TABLE `detail_supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `detail_supplier`
+-- Dumping data for table `detail_supplier`
 --
 
 INSERT INTO `detail_supplier` (`id_supplier`, `id_produk`, `harga_produk`) VALUES
@@ -174,7 +182,7 @@ INSERT INTO `detail_supplier` (`id_supplier`, `id_produk`, `harga_produk`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `diskon_produk`
+-- Table structure for table `diskon_produk`
 --
 
 CREATE TABLE `diskon_produk` (
@@ -187,7 +195,7 @@ CREATE TABLE `diskon_produk` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jurnal`
+-- Table structure for table `jurnal`
 --
 
 CREATE TABLE `jurnal` (
@@ -201,7 +209,7 @@ CREATE TABLE `jurnal` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jurnal_temp`
+-- Table structure for table `jurnal_temp`
 --
 
 CREATE TABLE `jurnal_temp` (
@@ -213,17 +221,21 @@ CREATE TABLE `jurnal_temp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jurnal_temp`
+-- Dumping data for table `jurnal_temp`
 --
 
 INSERT INTO `jurnal_temp` (`id_transaksi`, `no_coa`, `posisi`, `tanggal`, `nominal`) VALUES
 ('SLD.202012.00001', '11101111', 'D', '2020-12-04', 20000000),
-('SLD.202012.00001', '30001310', 'K', '2020-12-04', 20000000);
+('SLD.202012.00001', '30001310', 'K', '2020-12-04', 20000000),
+('PBL.202012.00001', '50001511', 'D', '2020-12-11', 1000000),
+('PBL.202012.00001', '50001512', 'D', '2020-12-11', 350000),
+('PBL.202012.00001', '50001513', 'K', '2020-12-11', 50000),
+('PBL.202012.00001', '11101111', 'K', '2020-12-11', 1300000);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kab_kot`
+-- Table structure for table `kab_kot`
 --
 
 CREATE TABLE `kab_kot` (
@@ -233,7 +245,7 @@ CREATE TABLE `kab_kot` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kab_kot`
+-- Dumping data for table `kab_kot`
 --
 
 INSERT INTO `kab_kot` (`id_kabkot`, `nama_kabkot`, `id_provinsi`) VALUES
@@ -716,7 +728,7 @@ INSERT INTO `kab_kot` (`id_kabkot`, `nama_kabkot`, `id_provinsi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kasir`
+-- Table structure for table `kasir`
 --
 
 CREATE TABLE `kasir` (
@@ -728,7 +740,7 @@ CREATE TABLE `kasir` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori_produk`
+-- Table structure for table `kategori_produk`
 --
 
 CREATE TABLE `kategori_produk` (
@@ -737,7 +749,7 @@ CREATE TABLE `kategori_produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kategori_produk`
+-- Dumping data for table `kategori_produk`
 --
 
 INSERT INTO `kategori_produk` (`id_kategori`, `nama_kategori`) VALUES
@@ -766,7 +778,7 @@ INSERT INTO `kategori_produk` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kecamatan`
+-- Table structure for table `kecamatan`
 --
 
 CREATE TABLE `kecamatan` (
@@ -777,7 +789,7 @@ CREATE TABLE `kecamatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kecamatan`
+-- Dumping data for table `kecamatan`
 --
 
 INSERT INTO `kecamatan` (`id_kecamatan`, `nama_kecamatan`, `id_kabkot`, `id_provinsi`) VALUES
@@ -7431,7 +7443,7 @@ INSERT INTO `kecamatan` (`id_kecamatan`, `nama_kecamatan`, `id_kabkot`, `id_prov
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelurahan`
+-- Table structure for table `kelurahan`
 --
 
 CREATE TABLE `kelurahan` (
@@ -7443,7 +7455,7 @@ CREATE TABLE `kelurahan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kelurahan`
+-- Dumping data for table `kelurahan`
 --
 
 INSERT INTO `kelurahan` (`id_kelurahan`, `nama_kelurahan`, `id_kecamatan`, `id_kabkot`, `id_provinsi`) VALUES
@@ -88768,7 +88780,7 @@ INSERT INTO `kelurahan` (`id_kelurahan`, `nama_kelurahan`, `id_kecamatan`, `id_k
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `negara`
+-- Table structure for table `negara`
 --
 
 CREATE TABLE `negara` (
@@ -88777,7 +88789,7 @@ CREATE TABLE `negara` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `negara`
+-- Dumping data for table `negara`
 --
 
 INSERT INTO `negara` (`id_negara`, `nama_negara`) VALUES
@@ -88978,7 +88990,7 @@ INSERT INTO `negara` (`id_negara`, `nama_negara`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `open_kasir`
+-- Table structure for table `open_kasir`
 --
 
 CREATE TABLE `open_kasir` (
@@ -88990,7 +89002,7 @@ CREATE TABLE `open_kasir` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pelanggan`
+-- Table structure for table `pelanggan`
 --
 
 CREATE TABLE `pelanggan` (
@@ -89008,12 +89020,13 @@ CREATE TABLE `pelanggan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pembelian`
+-- Table structure for table `pembelian`
 --
 
 CREATE TABLE `pembelian` (
   `id_pembelian` varchar(20) NOT NULL,
   `id_supplier` varchar(20) NOT NULL,
+  `id_stok` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
   `periode` varchar(6) NOT NULL,
   `nominal` int(11) NOT NULL,
@@ -89023,7 +89036,7 @@ CREATE TABLE `pembelian` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penjualan`
+-- Table structure for table `penjualan`
 --
 
 CREATE TABLE `penjualan` (
@@ -89037,7 +89050,7 @@ CREATE TABLE `penjualan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pesanan`
+-- Table structure for table `pesanan`
 --
 
 CREATE TABLE `pesanan` (
@@ -89050,7 +89063,7 @@ CREATE TABLE `pesanan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Table structure for table `produk`
 --
 
 CREATE TABLE `produk` (
@@ -89064,7 +89077,7 @@ CREATE TABLE `produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `produk`
+-- Dumping data for table `produk`
 --
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `harga_jual`, `satuan_penjualan`, `satuan_pembelian`, `foto`, `id_subkategori`) VALUES
@@ -89082,7 +89095,7 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `harga_jual`, `satuan_penjuala
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `provinsi`
+-- Table structure for table `provinsi`
 --
 
 CREATE TABLE `provinsi` (
@@ -89091,7 +89104,7 @@ CREATE TABLE `provinsi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `provinsi`
+-- Dumping data for table `provinsi`
 --
 
 INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
@@ -89133,7 +89146,7 @@ INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `retur_pembelian`
+-- Table structure for table `retur_pembelian`
 --
 
 CREATE TABLE `retur_pembelian` (
@@ -89147,7 +89160,7 @@ CREATE TABLE `retur_pembelian` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `retur_penjualan`
+-- Table structure for table `retur_penjualan`
 --
 
 CREATE TABLE `retur_penjualan` (
@@ -89161,7 +89174,7 @@ CREATE TABLE `retur_penjualan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `saldo`
+-- Table structure for table `saldo`
 --
 
 CREATE TABLE `saldo` (
@@ -89171,7 +89184,7 @@ CREATE TABLE `saldo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `saldo`
+-- Dumping data for table `saldo`
 --
 
 INSERT INTO `saldo` (`id_saldo`, `tanggal`, `nominal`) VALUES
@@ -89180,7 +89193,7 @@ INSERT INTO `saldo` (`id_saldo`, `tanggal`, `nominal`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `stok_produk`
+-- Table structure for table `stok_produk`
 --
 
 CREATE TABLE `stok_produk` (
@@ -89189,10 +89202,17 @@ CREATE TABLE `stok_produk` (
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `stok_produk`
+--
+
+INSERT INTO `stok_produk` (`id_stok`, `tanggal`, `status`) VALUES
+('STK.202012.00001', '2020-12-11', 0);
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `subkategori_produk`
+-- Table structure for table `subkategori_produk`
 --
 
 CREATE TABLE `subkategori_produk` (
@@ -89202,7 +89222,7 @@ CREATE TABLE `subkategori_produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `subkategori_produk`
+-- Dumping data for table `subkategori_produk`
 --
 
 INSERT INTO `subkategori_produk` (`id_subkategori`, `nama_subkategori`, `id_kategori`) VALUES
@@ -89274,7 +89294,7 @@ INSERT INTO `subkategori_produk` (`id_subkategori`, `nama_subkategori`, `id_kate
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `supplier`
+-- Table structure for table `supplier`
 --
 
 CREATE TABLE `supplier` (
@@ -89291,7 +89311,7 @@ CREATE TABLE `supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `supplier`
+-- Dumping data for table `supplier`
 --
 
 INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `alamat_supplier`, `telp_supplier`, `foto`, `id_negara`, `id_provinsi`, `id_kabkot`, `id_kecamatan`, `id_kelurahan`) VALUES
@@ -89300,7 +89320,7 @@ INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `alamat_supplier`, `telp
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi`
+-- Table structure for table `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -89312,16 +89332,17 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `transaksi`
+-- Dumping data for table `transaksi`
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `periode`, `keterangan`, `nominal`, `status`) VALUES
+('PBL.202012.00001', '202012', 'Pembelian produk nestle', 1000000, '0'),
 ('SLD.202012.00001', '202012', 'Test saldo update', 20000000, '0');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -89335,7 +89356,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `alamat`, `jabatan`, `foto`) VALUES
@@ -89351,7 +89372,7 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `alamat`, `jabata
 --
 
 --
--- Indeks untuk tabel `close_kasir`
+-- Indexes for table `close_kasir`
 --
 ALTER TABLE `close_kasir`
   ADD PRIMARY KEY (`id_close`),
@@ -89359,84 +89380,84 @@ ALTER TABLE `close_kasir`
   ADD KEY `fk_id_open_close` (`id_open`);
 
 --
--- Indeks untuk tabel `coa`
+-- Indexes for table `coa`
 --
 ALTER TABLE `coa`
   ADD PRIMARY KEY (`no_coa`),
   ADD KEY `no_coa` (`no_coa`);
 
 --
--- Indeks untuk tabel `detail_diskon_produk`
+-- Indexes for table `detail_diskon_produk`
 --
 ALTER TABLE `detail_diskon_produk`
   ADD KEY `fk_id_diskon_detail_diskon_produk` (`id_diskon`),
   ADD KEY `fk_id_produk_detail_diskon_produk` (`id_produk`);
 
 --
--- Indeks untuk tabel `detail_pembelian`
+-- Indexes for table `detail_pembelian`
 --
 ALTER TABLE `detail_pembelian`
   ADD KEY `fk_id_transaksi_detail_pembelian` (`id_pembelian`),
   ADD KEY `fk_id_produk_detail_pembelian` (`id_produk`);
 
 --
--- Indeks untuk tabel `detail_penjualan`
+-- Indexes for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
   ADD KEY `fk_id_penjualan_detail_penjualan` (`id_penjualan`),
   ADD KEY `fk_id_produk_detail_penjualan` (`id_produk`);
 
 --
--- Indeks untuk tabel `detail_retur_pembelian`
+-- Indexes for table `detail_retur_pembelian`
 --
 ALTER TABLE `detail_retur_pembelian`
   ADD KEY `fk_id_retur_pembelian_detail` (`id_retur_pembelian`),
   ADD KEY `fk_id_produk_retur_pembelian_detail` (`id_produk`);
 
 --
--- Indeks untuk tabel `detail_retur_penjualan`
+-- Indexes for table `detail_retur_penjualan`
 --
 ALTER TABLE `detail_retur_penjualan`
   ADD KEY `fk_id_retur_penjualan_detail` (`id_retur_pembelian`),
   ADD KEY `fk_id_produk_retur_penjualan_detail` (`id_produk`);
 
 --
--- Indeks untuk tabel `detail_stok_produk`
+-- Indexes for table `detail_stok_produk`
 --
 ALTER TABLE `detail_stok_produk`
   ADD KEY `fk_id_stok_detail` (`id_stok`),
   ADD KEY `fk_id_produk_detail` (`id_produk`);
 
 --
--- Indeks untuk tabel `detail_supplier`
+-- Indexes for table `detail_supplier`
 --
 ALTER TABLE `detail_supplier`
   ADD KEY `fk_id_supplier_detail_supplier` (`id_supplier`),
   ADD KEY `fk_id_produk_detail_supplier` (`id_produk`);
 
 --
--- Indeks untuk tabel `diskon_produk`
+-- Indexes for table `diskon_produk`
 --
 ALTER TABLE `diskon_produk`
   ADD PRIMARY KEY (`id_diskon`),
   ADD KEY `id_diskon` (`id_diskon`);
 
 --
--- Indeks untuk tabel `jurnal`
+-- Indexes for table `jurnal`
 --
 ALTER TABLE `jurnal`
   ADD KEY `fk_id_transaksi_jurnal` (`id_transaksi`),
   ADD KEY `fk_no_coa` (`no_coa`);
 
 --
--- Indeks untuk tabel `jurnal_temp`
+-- Indexes for table `jurnal_temp`
 --
 ALTER TABLE `jurnal_temp`
   ADD KEY `fk_id_transaksi_jurnal_tem` (`id_transaksi`),
   ADD KEY `fk_no_coa_jurnal_temp` (`no_coa`);
 
 --
--- Indeks untuk tabel `kab_kot`
+-- Indexes for table `kab_kot`
 --
 ALTER TABLE `kab_kot`
   ADD PRIMARY KEY (`id_kabkot`),
@@ -89444,7 +89465,7 @@ ALTER TABLE `kab_kot`
   ADD KEY `id_kabkot` (`id_kabkot`);
 
 --
--- Indeks untuk tabel `kasir`
+-- Indexes for table `kasir`
 --
 ALTER TABLE `kasir`
   ADD PRIMARY KEY (`id_kasir`),
@@ -89452,14 +89473,14 @@ ALTER TABLE `kasir`
   ADD KEY `id_kasir` (`id_kasir`);
 
 --
--- Indeks untuk tabel `kategori_produk`
+-- Indexes for table `kategori_produk`
 --
 ALTER TABLE `kategori_produk`
   ADD PRIMARY KEY (`id_kategori`),
   ADD KEY `id_kategori` (`id_kategori`);
 
 --
--- Indeks untuk tabel `kecamatan`
+-- Indexes for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
   ADD PRIMARY KEY (`id_kecamatan`),
@@ -89468,7 +89489,7 @@ ALTER TABLE `kecamatan`
   ADD KEY `id_kecamatan` (`id_kecamatan`);
 
 --
--- Indeks untuk tabel `kelurahan`
+-- Indexes for table `kelurahan`
 --
 ALTER TABLE `kelurahan`
   ADD PRIMARY KEY (`id_kelurahan`),
@@ -89478,14 +89499,14 @@ ALTER TABLE `kelurahan`
   ADD KEY `id_kelurahan` (`id_kelurahan`);
 
 --
--- Indeks untuk tabel `negara`
+-- Indexes for table `negara`
 --
 ALTER TABLE `negara`
   ADD PRIMARY KEY (`id_negara`),
   ADD KEY `id_negara` (`id_negara`);
 
 --
--- Indeks untuk tabel `open_kasir`
+-- Indexes for table `open_kasir`
 --
 ALTER TABLE `open_kasir`
   ADD PRIMARY KEY (`id_open`),
@@ -89493,7 +89514,7 @@ ALTER TABLE `open_kasir`
   ADD KEY `id_open` (`id_open`);
 
 --
--- Indeks untuk tabel `pelanggan`
+-- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
   ADD PRIMARY KEY (`id_pelanggan`),
@@ -89505,15 +89526,16 @@ ALTER TABLE `pelanggan`
   ADD KEY `id_pelanggan` (`id_pelanggan`);
 
 --
--- Indeks untuk tabel `pembelian`
+-- Indexes for table `pembelian`
 --
 ALTER TABLE `pembelian`
   ADD PRIMARY KEY (`id_pembelian`),
   ADD KEY `fk_id_supplier_pembelian` (`id_supplier`),
-  ADD KEY `id_pembelian` (`id_pembelian`);
+  ADD KEY `id_pembelian` (`id_pembelian`),
+  ADD KEY `fk_id_stok_pembelian` (`id_stok`);
 
 --
--- Indeks untuk tabel `penjualan`
+-- Indexes for table `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`id_penjualan`),
@@ -89521,14 +89543,14 @@ ALTER TABLE `penjualan`
   ADD KEY `id_penjualan` (`id_penjualan`);
 
 --
--- Indeks untuk tabel `pesanan`
+-- Indexes for table `pesanan`
 --
 ALTER TABLE `pesanan`
   ADD PRIMARY KEY (`id_pesanan`),
   ADD KEY `id_pesanan` (`id_pesanan`);
 
 --
--- Indeks untuk tabel `produk`
+-- Indexes for table `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`),
@@ -89536,14 +89558,14 @@ ALTER TABLE `produk`
   ADD KEY `id_produk` (`id_produk`);
 
 --
--- Indeks untuk tabel `provinsi`
+-- Indexes for table `provinsi`
 --
 ALTER TABLE `provinsi`
   ADD PRIMARY KEY (`id_provinsi`),
   ADD KEY `id_provinsi` (`id_provinsi`);
 
 --
--- Indeks untuk tabel `retur_pembelian`
+-- Indexes for table `retur_pembelian`
 --
 ALTER TABLE `retur_pembelian`
   ADD PRIMARY KEY (`id_retur_pembelian`),
@@ -89552,7 +89574,7 @@ ALTER TABLE `retur_pembelian`
   ADD KEY `id_retur_pembelian` (`id_retur_pembelian`);
 
 --
--- Indeks untuk tabel `retur_penjualan`
+-- Indexes for table `retur_penjualan`
 --
 ALTER TABLE `retur_penjualan`
   ADD PRIMARY KEY (`id_retur_penjualan`),
@@ -89561,21 +89583,21 @@ ALTER TABLE `retur_penjualan`
   ADD KEY `id_retur_penjualan` (`id_retur_penjualan`);
 
 --
--- Indeks untuk tabel `saldo`
+-- Indexes for table `saldo`
 --
 ALTER TABLE `saldo`
   ADD PRIMARY KEY (`id_saldo`),
   ADD KEY `id_saldo` (`id_saldo`);
 
 --
--- Indeks untuk tabel `stok_produk`
+-- Indexes for table `stok_produk`
 --
 ALTER TABLE `stok_produk`
   ADD PRIMARY KEY (`id_stok`),
   ADD KEY `id_stok` (`id_stok`);
 
 --
--- Indeks untuk tabel `subkategori_produk`
+-- Indexes for table `subkategori_produk`
 --
 ALTER TABLE `subkategori_produk`
   ADD PRIMARY KEY (`id_subkategori`),
@@ -89583,7 +89605,7 @@ ALTER TABLE `subkategori_produk`
   ADD KEY `id_subkategori` (`id_subkategori`);
 
 --
--- Indeks untuk tabel `supplier`
+-- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`id_supplier`),
@@ -89595,24 +89617,24 @@ ALTER TABLE `supplier`
   ADD KEY `id_supplier` (`id_supplier`);
 
 --
--- Indeks untuk tabel `transaksi`
+-- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
   ADD KEY `id_transaksi` (`id_transaksi`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `close_kasir`
+-- Constraints for table `close_kasir`
 --
 ALTER TABLE `close_kasir`
   ADD CONSTRAINT `fk_id_close` FOREIGN KEY (`id_close`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -89620,89 +89642,89 @@ ALTER TABLE `close_kasir`
   ADD CONSTRAINT `fk_id_open_close` FOREIGN KEY (`id_open`) REFERENCES `open_kasir` (`id_open`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `detail_diskon_produk`
+-- Constraints for table `detail_diskon_produk`
 --
 ALTER TABLE `detail_diskon_produk`
   ADD CONSTRAINT `fk_id_diskon_detail_diskon_produk` FOREIGN KEY (`id_diskon`) REFERENCES `diskon_produk` (`id_diskon`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_produk_detail_diskon_produk` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `detail_pembelian`
+-- Constraints for table `detail_pembelian`
 --
 ALTER TABLE `detail_pembelian`
   ADD CONSTRAINT `fk_id_produk_detail_pembelian` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_transaksi_detail_pembelian` FOREIGN KEY (`id_pembelian`) REFERENCES `pembelian` (`id_pembelian`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `detail_penjualan`
+-- Constraints for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
   ADD CONSTRAINT `fk_id_penjualan_detail_penjualan` FOREIGN KEY (`id_penjualan`) REFERENCES `penjualan` (`id_penjualan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_produk_detail_penjualan` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `detail_retur_pembelian`
+-- Constraints for table `detail_retur_pembelian`
 --
 ALTER TABLE `detail_retur_pembelian`
   ADD CONSTRAINT `fk_id_produk_retur_pembelian_detail` FOREIGN KEY (`id_produk`) REFERENCES `retur_pembelian` (`id_retur_pembelian`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_retur_pembelian_detail` FOREIGN KEY (`id_retur_pembelian`) REFERENCES `retur_pembelian` (`id_retur_pembelian`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `detail_retur_penjualan`
+-- Constraints for table `detail_retur_penjualan`
 --
 ALTER TABLE `detail_retur_penjualan`
   ADD CONSTRAINT `fk_id_produk_retur_penjualan_detail` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_retur_penjualan_detail` FOREIGN KEY (`id_retur_pembelian`) REFERENCES `retur_penjualan` (`id_retur_penjualan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `detail_stok_produk`
+-- Constraints for table `detail_stok_produk`
 --
 ALTER TABLE `detail_stok_produk`
   ADD CONSTRAINT `fk_id_produk_detail` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_stok_detail` FOREIGN KEY (`id_stok`) REFERENCES `stok_produk` (`id_stok`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `detail_supplier`
+-- Constraints for table `detail_supplier`
 --
 ALTER TABLE `detail_supplier`
   ADD CONSTRAINT `fk_id_produk_detail_supplier` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_supplier_detail_supplier` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `jurnal`
+-- Constraints for table `jurnal`
 --
 ALTER TABLE `jurnal`
   ADD CONSTRAINT `fk_id_transaksi_jurnal` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_no_coa` FOREIGN KEY (`no_coa`) REFERENCES `coa` (`no_coa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `jurnal_temp`
+-- Constraints for table `jurnal_temp`
 --
 ALTER TABLE `jurnal_temp`
   ADD CONSTRAINT `fk_id_transaksi_jurnal_tem` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_no_coa_jurnal_temp` FOREIGN KEY (`no_coa`) REFERENCES `coa` (`no_coa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `kab_kot`
+-- Constraints for table `kab_kot`
 --
 ALTER TABLE `kab_kot`
   ADD CONSTRAINT `fk_id_kbkot` FOREIGN KEY (`id_provinsi`) REFERENCES `provinsi` (`id_provinsi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `kasir`
+-- Constraints for table `kasir`
 --
 ALTER TABLE `kasir`
   ADD CONSTRAINT `fk_id_user_kasir` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `kecamatan`
+-- Constraints for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
   ADD CONSTRAINT `fk_id_kabkot_camat` FOREIGN KEY (`id_kabkot`) REFERENCES `kab_kot` (`id_kabkot`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_provinsi_camat` FOREIGN KEY (`id_provinsi`) REFERENCES `provinsi` (`id_provinsi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `kelurahan`
+-- Constraints for table `kelurahan`
 --
 ALTER TABLE `kelurahan`
   ADD CONSTRAINT `fk_id_kabkot_lurah` FOREIGN KEY (`id_kabkot`) REFERENCES `kab_kot` (`id_kabkot`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -89710,13 +89732,13 @@ ALTER TABLE `kelurahan`
   ADD CONSTRAINT `fk_id_provinsi_lurah` FOREIGN KEY (`id_provinsi`) REFERENCES `provinsi` (`id_provinsi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `open_kasir`
+-- Constraints for table `open_kasir`
 --
 ALTER TABLE `open_kasir`
   ADD CONSTRAINT `fk_id_kasir_open` FOREIGN KEY (`id_kasir`) REFERENCES `kasir` (`id_kasir`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `pelanggan`
+-- Constraints for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
   ADD CONSTRAINT `fk_id_kabkot_pelanggan` FOREIGN KEY (`id_kabkot`) REFERENCES `kab_kot` (`id_kabkot`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -89726,27 +89748,28 @@ ALTER TABLE `pelanggan`
   ADD CONSTRAINT `fk_id_provinsi_pelanggan` FOREIGN KEY (`id_provinsi`) REFERENCES `provinsi` (`id_provinsi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `pembelian`
+-- Constraints for table `pembelian`
 --
 ALTER TABLE `pembelian`
   ADD CONSTRAINT `fk_id_pembelian` FOREIGN KEY (`id_pembelian`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_id_stok_pembelian` FOREIGN KEY (`id_stok`) REFERENCES `stok_produk` (`id_stok`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_supplier_pembelian` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `penjualan`
+-- Constraints for table `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD CONSTRAINT `fk_id_pelanggan_penjualan` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_id_transaksi_penjualan` FOREIGN KEY (`id_penjualan`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `produk`
+-- Constraints for table `produk`
 --
 ALTER TABLE `produk`
   ADD CONSTRAINT `fk_id_subkategori_produk` FOREIGN KEY (`id_subkategori`) REFERENCES `subkategori_produk` (`id_subkategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `retur_pembelian`
+-- Constraints for table `retur_pembelian`
 --
 ALTER TABLE `retur_pembelian`
   ADD CONSTRAINT `fk_id_pembelian_retur_beli` FOREIGN KEY (`id_pembelian`) REFERENCES `pembelian` (`id_pembelian`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -89754,7 +89777,7 @@ ALTER TABLE `retur_pembelian`
   ADD CONSTRAINT `fk_id_transaksi_retur_beli` FOREIGN KEY (`id_retur_pembelian`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `retur_penjualan`
+-- Constraints for table `retur_penjualan`
 --
 ALTER TABLE `retur_penjualan`
   ADD CONSTRAINT `fk_id_pelanggan_retur_jual` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -89762,19 +89785,19 @@ ALTER TABLE `retur_penjualan`
   ADD CONSTRAINT `fk_id_transaksi_retur_jual` FOREIGN KEY (`id_retur_penjualan`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `saldo`
+-- Constraints for table `saldo`
 --
 ALTER TABLE `saldo`
   ADD CONSTRAINT `fk_id_transaksi` FOREIGN KEY (`id_saldo`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `subkategori_produk`
+-- Constraints for table `subkategori_produk`
 --
 ALTER TABLE `subkategori_produk`
   ADD CONSTRAINT `fk_id_kategori_subkategori_produk` FOREIGN KEY (`id_kategori`) REFERENCES `kategori_produk` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `supplier`
+-- Constraints for table `supplier`
 --
 ALTER TABLE `supplier`
   ADD CONSTRAINT `fk_id_kabkot` FOREIGN KEY (`id_kabkot`) REFERENCES `kab_kot` (`id_kabkot`) ON DELETE CASCADE ON UPDATE CASCADE,
