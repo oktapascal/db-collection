@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jan 2021 pada 07.06
+-- Waktu pembuatan: 05 Jan 2021 pada 10.48
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.2.32
 
@@ -57,7 +57,7 @@ CREATE TABLE `pegawai` (
   `id_user` varchar(20) NOT NULL,
   `nama_pegawai` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
-  `foto` varchar(150) NOT NULL
+  `foto` varchar(150) NOT NULL DEFAULT 'no-avatar.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
